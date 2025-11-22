@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Login Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body>
+        <form action="/login" method="post">
+            <h1>Login Page</h1>
+            <input type="text" name="username" placeholder="username" />
+            <input type="password" name="password" placeholder="password" />
+            <button type="submit">Login</button>
+        </form>
+
+        <p th:if="${param.error}">
+            <script>alert('로그인 실패');</script>
+        </p>
+    </body>
+</html>

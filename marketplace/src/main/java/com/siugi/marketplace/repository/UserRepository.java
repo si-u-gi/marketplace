@@ -9,6 +9,7 @@ import com.siugi.marketplace.domain.Users;
 public interface UserRepository {
     Users save(Users user);
     Optional<Users> findByUser(Long id);
+    Optional<Users> findByUsername(String username);
     Optional<Users> findByUsernameAndPassword(LoginForm loginForm);
     List<Users> findAll();
 }

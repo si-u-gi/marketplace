@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>주문 관리 | Marketplace 판매자센터</title>
+  <link rel="stylesheet" href="../../static/css/seller_css.css" th:href="@{/css/seller_css.css}">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar__logo"><span>Market</span>place</div>
+    <nav class="sidebar__menu">
+      <div class="sidebar__item"><a href="/seller/dashboard">대시보드</a></div>
+      <div class="sidebar__item"><a href="/seller/products">상품 관리</a></div>
+      <div class="sidebar__item sidebar__item--active">주문 관리</div>
+      <div class="sidebar__item"><a href="/seller/messages">메시지</a></div>
+      <div class="sidebar__item"><a href="/seller/finance">정산 / 수익</a></div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="topbar__title">주문 관리</div>
+        <div class="topbar__subtitle">고객 주문을 확인하고 배송을 처리하세요.</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="card__header">
+        <div class="card__title">전체 주문</div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>주문번호</th>
+              <th>고객명</th>
+              <th>상품명</th>
+              <th>금액</th>
+              <th>상태</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="o : ${orders}">
+              <td th:text="${o.order_id}"></td>
+              <td th:text="${o.customer_name}"></td>
+              <td th:text="${o.product_name}"></td>
+              <td th:text="'₩ ' + ${#numbers.formatInteger(o.amount, 3, 'COMMA')}"></td>
+              <td><span class="status-pill status-pill--paid">결제완료</span></td>
+              <td><button class="btn-sm">상세보기</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

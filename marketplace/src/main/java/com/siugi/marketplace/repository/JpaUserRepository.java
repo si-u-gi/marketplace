@@ -23,6 +23,21 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    public Optional<Users> findByUsername(String username) {
+        String jpql = "select u from Users u where u.username = :username";
+        List<Users> result = em.createQuery(jpql, Users.class)
+            .setParameter("username", username)
+            .getResultList();
+        
+        if (result.isEmpty()) {
+            return Optional.empty();
+        }
+        else {
+            return Optional.of(result.get(0));
+        }
+    }
+
+    @Override
     public Optional<Users> findByUsernameAndPassword(LoginForm loginForm) {
         String jpql = "select u from Users u where u.username = :username and u.password = :password";
         List<Users> result = em.createQuery(jpql, Users.class)
@@ -46,8 +61,6 @@ public class JpaUserRepository implements UserRepository {
     @Override
     public List<Users> findAll() {
         String jpql = "select u from Users u";
-        List<Users> result = em.createQuery(jpql, Users.class).getResultList();
-        return result;
+        return em.createQuery(jpql, Users.class).getResultList();
     }
-    
 }

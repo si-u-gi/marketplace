@@ -1,5 +1,6 @@
 package com.siugi.marketplace.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.siugi.marketplace.controller.LoginForm;
@@ -17,14 +18,14 @@ public class UserService {
     }
 
     public Long join(Users user) {
-        checkUserDuplication(user);
+        checkUserDuplication(user.getUsername());
 
         userRepository.save(user);
         return user.getId();
     }
 
-    private void checkUserDuplication(Users user) {
-        userRepository.findByUser(user.getId()).ifPresent(u -> {
+    private void checkUserDuplication(String username) {
+        userRepository.findByUsername(username).ifPresent(u -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
     }
@@ -37,5 +38,9 @@ public class UserService {
         else {
             return user.get().getRole().toString();
         }
+    }
+
+    public List<Users> findAllUser() {
+        return userRepository.findAll();
     }
 }

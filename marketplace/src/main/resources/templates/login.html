@@ -1,20 +1,94 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Login Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #f2f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    <body>
+        .login-container {
+            background: #ffffff;
+            width: 380px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #1f2937;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px 0;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            background: #f9fafb;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border: 1px solid #9ca3af;
+            border-radius: 10px;
+            background: white;
+            color: #1f2937;
+            cursor: pointer;
+        }
+
+        .error-msg {
+            margin-top: 12px;
+            color: #dc2626;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1 class="login-title">Marketplace Login</h1>
+
         <form action="/login" method="post">
-            <h1>Login Page</h1>
-            <input type="text" name="username" placeholder="username" />
-            <input type="password" name="password" placeholder="password" />
-            <button type="submit">Login</button>
+            <input type="text" name="username" placeholder="아이디 입력" required />
+            <input type="password" name="password" placeholder="비밀번호 입력" required />
+            <button type="submit" class="login-btn">로그인</button>
         </form>
 
-        <p th:if="${param.error}">
-            <script>alert('로그인 실패');</script>
+        <form action="/join" method="post">
+            <button type="submit" class="create-btn">새 계정 만들기</button>
+        </form>
+
+        <p th:if="${param.error}" class="error-msg">
+            로그인 실패: 사용자명 또는 비밀번호가 잘못되었습니다.
         </p>
-    </body>
+    </div>
+</body>
 </html>

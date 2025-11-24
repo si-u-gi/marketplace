@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>상품 관리 | Marketplace 판매자센터</title>
+  <link rel="stylesheet" href="../../static/css/seller_css.css" th:href="@{/css/seller_css.css}">
+</head>
+<body>
+  <div class="layout">
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div class="sidebar__logo"><span>Market</span>place</div>
+
+      <div>
+        <div class="sidebar__section-title">메뉴</div>
+        <nav class="sidebar__menu">
+          <div class="sidebar__item"><a href="/seller/dashboard">대시보드</a></div>
+          <div class="sidebar__item sidebar__item--active"><span>상품 관리</span></div>
+          <div class="sidebar__item"><a href="/seller/orders">주문 관리</a></div>
+          <div class="sidebar__item"><a href="/seller/messages">메시지</a></div>
+          <div class="sidebar__item"><a href="/seller/finance">정산 / 수익</a></div>
+        </nav>
+      </div>
+
+      <div class="sidebar__bottom">&copy; 2025 Marketplace 판매자 센터</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="topbar__title">상품 관리</div>
+          <div class="topbar__subtitle">상품 등록, 수정, 삭제를 관리합니다.</div>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">판매 상품 목록</div>
+            <div class="card__subtitle">총 <span th:text="${products.size()}"></span>개 상품</div>
+          </div>
+          <button class="card__btn card__btn--primary">+ 새 상품 등록</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>상품 이미지</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>재고</th>
+                <th>상태</th>
+                <th>관리</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="p : ${products}">
+                <td><img src="/images/example.png" class="product-thumb"></td>
+                <td th:text="${p.product_name}"></td>
+                <td th:text="'₩ ' + ${#numbers.formatInteger(p.price, 3, 'COMMA')}"></td>
+                <td th:text="${p.stock} + '개'"></td>
+                <td><span class="badge badge--green">판매 중</span></td>
+                <td><button class="btn-sm">수정</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

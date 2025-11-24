@@ -9,6 +9,7 @@ java -jar marketplace-0.0.1-SNAPSHOT.jar
 h2 DB 실행하는 법
 cd ~/h2
 ./h2.sh
+jdbc:h2:tcp://localhost/~/test
 
 :8080 오류 생기면
 applicaion.properties에 server.forward-headers-strategy=framework 추가

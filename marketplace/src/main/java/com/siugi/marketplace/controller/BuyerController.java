@@ -22,6 +22,6 @@ public class BuyerController {
     public String list(Model model) {
         List<Products> products = productRepository.findAll();
         model.addAttribute("products", products);
-        return "/buyer/home";
+        return "buyer/home";
     }
 }

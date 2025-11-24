@@ -1,12 +1,17 @@
 package com.siugi.marketplace;
 
+import java.io.File;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.siugi.marketplace.repository.JpaProductRepository;
 import com.siugi.marketplace.repository.JpaUserRepository;
 import com.siugi.marketplace.repository.ProductRepository;
 import com.siugi.marketplace.repository.UserRepository;
+import com.siugi.marketplace.service.FileUploadService;
 import com.siugi.marketplace.service.ProductService;
 import com.siugi.marketplace.service.UserService;
 
@@ -16,9 +21,11 @@ import jakarta.persistence.EntityManager;
 public class SpringConfig {
 
     private final EntityManager em;
+    private final FileUploadService fileUploadService;
 
-    public SpringConfig(EntityManager em) {
+    public SpringConfig(EntityManager em, FileUploadService fileUploadService) {
         this.em = em;
+        this.fileUploadService = fileUploadService;
     }
 
     @Bean
@@ -33,7 +40,7 @@ public class SpringConfig {
 
     @Bean
     public ProductService productService() {
-        return new ProductService(productRepository());
+        return new ProductService(productRepository(), fileUploadService);
     }
 
     @Bean

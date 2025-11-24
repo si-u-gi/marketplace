@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>새 상품 등록 | Marketplace 판매자센터</title>
+  <link rel="stylesheet" href="../../static/css/seller_css.css" th:href="@{/css/seller_css.css}">
+</head>
+<body>
+<div class="layout">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="sidebar__logo"><span>Market</span>place</div>
+
+    <div>
+      <div class="sidebar__section-title">메뉴</div>
+      <nav class="sidebar__menu">
+        <div class="sidebar__item"><a href="/seller/dashboard">대시보드</a></div>
+        <div class="sidebar__item sidebar__item--active"><a href="/seller/products">상품 관리</a></div>
+        <div class="sidebar__item"><a href="/seller/orders">주문 관리</a></div>
+        <div class="sidebar__item"><a href="/seller/messages">메시지</a></div>
+        <div class="sidebar__item"><a href="/seller/finance">정산 / 수익</a></div>
+      </nav>
+    </div>
+
+    <div class="sidebar__bottom">&copy; 2025 Marketplace 판매자 센터</div>
+  </aside>
+
+  <!-- 메인 영역 -->
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="topbar__title">새 상품 등록</div>
+        <div class="topbar__subtitle">판매할 상품 정보를 입력하세요.</div>
+      </div>
+    </header>
+
+    <!-- 상품 등록 폼 -->
+    <section class="card">
+      <form action="/seller/products/create" method="post" enctype="multipart/form-data">
+        <div class="card__header">
+          <div class="card__title">기본 정보 입력</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- 상품명 -->
+          <div>
+            <label>상품명</label><br>
+            <input type="text" name="productName" class="input-text" placeholder="예: 베이직 후드티" required>
+          </div>
+
+          <!-- 가격 -->
+          <div>
+            <label>가격</label><br>
+            <input type="number" name="price" class="input-text" placeholder="예: 29000" required>
+          </div>
+
+          <!-- 배송비 -->
+          <div>
+            <label>배송비</label><br>
+            <input type="number" name="shippingFee" class="input-text" placeholder="0 입력 시 무료배송">
+          </div>
+
+          <!-- 상품 이미지 -->
+          <div>
+            <label>상품 이미지</label><br>
+            <input type="file" name="imagePath" accept="image/*" required>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+          <a href="/seller/products" class="btn-sm btn-sm--outline">취소</a>
+          <button type="submit" class="card__btn card__btn--primary">상품 등록하기</button>
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

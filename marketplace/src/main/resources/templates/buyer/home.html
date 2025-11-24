@@ -588,7 +588,7 @@
       <!-- 상품 테이블로 변경 -->
       <section class="product-grid">
         <article class="product-card" th:each="product : ${products}">
-          <img class="product-card__thumb" th:src="@{${product.image_path}}" alt="상품 이미지" />
+          <img class="product-card__thumb" th:src="${product.image_path}" alt="상품 이미지" />
           <div class="product-card__name" th:text="${product.product_name}"></div>
           <div class="product-card__meta">
             <span th:text="${product.seller_name} + ' store' + ' · '"></span>

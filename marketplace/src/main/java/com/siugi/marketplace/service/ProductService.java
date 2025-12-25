@@ -45,7 +45,6 @@ public class ProductService {
         p.setRating(0);
         p.setReview_count(0);
 
-        // 🔥 업로드 서비스 호출
         String imagePath = fileUploadService.save(form.getImagePath());
 
         p.setImage_path(imagePath);

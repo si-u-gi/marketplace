@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.siugi.marketplace.domain.ProductForm;
 import com.siugi.marketplace.domain.Products;
-import com.siugi.marketplace.repository.ProductRepository;
 import com.siugi.marketplace.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;

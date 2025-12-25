@@ -9,19 +9,16 @@ import java.nio.file.Paths;
 
 @Service
 public class FileUploadService {
-
-    // 프로젝트 밖의 실제 저장 경로
     private final String uploadDir = "/workspaces/marketplace/upload/";
 
     public String save(MultipartFile file) {
-
         if (file.isEmpty()) {
             return null;
         }
 
         try {
-            String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            Path filepath = Paths.get(uploadDir + filename);
+            String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename(); // 파일 이름을 유니크하게 만들어줌.
+            Path filepath = Paths.get(uploadDir).resolve(filename);
 
             Files.createDirectories(filepath.getParent());
 

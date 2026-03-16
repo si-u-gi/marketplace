@@ -1,10 +1,17 @@
 # marketplace
 물건을 사고 팔 수 있는 사이트입니다.
 
-./gradlew clean build
-cd build/libs
-java -jar marketplace-0.0.1-SNAPSHOT.jar
 
+[빌드 및 실행] {
+DB 실행:
+    cd h2/bin
+    ./h2.sh
+
+빌드 및 실행
+    ./gradlew clean build
+    cd build/libs
+    java -jar marketplace-0.0.1-SNAPSHOT.jar
+}
 
 [자바 17 설치 및 적용 방법] {
 자바 17 설치:
@@ -45,6 +52,12 @@ java -jar marketplace-0.0.1-SNAPSHOT.jar
     H2 DB 설치 및 압축 풀기:
         wget https://github.com/h2database/h2database/releases/download/version-2.4.240/h2-2025-09-22.zip
         unzip h2.zip
+    
+    파일 만들기():
+    - Database "/home/codespace/test" not found, either pre-create it or allow remote database creation (not recommended in secure environments) [90149-240] 90149/90149 (Help)
+    - 이 오류가 발생했을 때 해결가능
+        mkdir -p /home/codespace
+        touch /home/codespace/test.mv.db
 
     권환 주기 및 실행:
         chmod +x h2.sh

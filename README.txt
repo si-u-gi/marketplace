@@ -63,3 +63,7 @@ DB 실행:
         chmod +x h2.sh
         ./h2.sh
 }
+
+[자동완성이 되지 않는다면] {
+    Language Support for Java(TM) by Red Hat 이 확장을 껐다가 켜면 해결됨.
+}

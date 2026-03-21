@@ -12,8 +12,8 @@ public class FileUploadService {
     private final String uploadDir = "/workspaces/marketplace/upload/";
 
     public String save(MultipartFile file) {
-        if (file.isEmpty()) {
-            return null;
+        if (file == null || file.isEmpty()) {
+            return "/upload/basic_photo.png";
         }
 
         try {

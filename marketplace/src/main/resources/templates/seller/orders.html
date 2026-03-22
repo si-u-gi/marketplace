@@ -9,13 +9,27 @@
 <div class="layout">
   <aside class="sidebar">
     <div class="sidebar__logo"><span>Market</span>place</div>
-    <nav class="sidebar__menu">
-      <div class="sidebar__item"><a href="/seller/dashboard">대시보드</a></div>
-      <div class="sidebar__item"><a href="/seller/products">상품 관리</a></div>
-      <div class="sidebar__item sidebar__item--active">주문 관리</div>
-      <div class="sidebar__item"><a href="/seller/messages">메시지</a></div>
-      <div class="sidebar__item"><a href="/seller/finance">정산 / 수익</a></div>
-    </nav>
+
+    <div>
+      <div class="sidebar__section-title">메뉴</div>
+      <nav class="sidebar__menu">
+        <a class="sidebar__item" href="/seller/dashboard">
+          <span>대시보드</span>
+        </a>
+        <a class="sidebar__item" href="/seller/products">
+          <span>상품 관리</span>
+        </a>
+        <a class="sidebar__item sidebar__item--active" href="/seller/orders">
+          <span>주문 관리</span>
+        </a>
+        <a class="sidebar__item" href="/seller/messages">
+          <span>메시지</span>
+        </a>
+        <a class="sidebar__item" href="/seller/finance">
+          <span>정산 / 수익</span>
+        </a>
+      </nav>
+    </div>
   </aside>
 
   <main class="main">

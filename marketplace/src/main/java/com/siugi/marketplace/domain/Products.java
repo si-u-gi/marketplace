@@ -12,6 +12,7 @@ public class Products {
     private String seller_name;
     private String product_name;
     private int price;
+    private int count;
     private int shipping_fee;
     private double rating;
     private int review_count;
@@ -47,6 +48,14 @@ public class Products {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getShipping_fee() {

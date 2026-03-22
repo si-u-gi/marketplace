@@ -14,11 +14,21 @@
       <div>
         <div class="sidebar__section-title">메뉴</div>
         <nav class="sidebar__menu">
-          <div class="sidebar__item"><a href="/seller/dashboard">대시보드</a></div>
-          <div class="sidebar__item sidebar__item--active"><span>상품 관리</span></div>
-          <div class="sidebar__item"><a href="/seller/orders">주문 관리</a></div>
-          <div class="sidebar__item"><a href="/seller/messages">메시지</a></div>
-          <div class="sidebar__item"><a href="/seller/finance">정산 / 수익</a></div>
+          <a class="sidebar__item" href="/seller/dashboard">
+            <span>대시보드</span>
+          </a>
+          <a class="sidebar__item sidebar__item--active" href="/seller/products">
+            <span>상품 관리</span>
+          </a>
+          <a class="sidebar__item" href="/seller/orders">
+            <span>주문 관리</span>
+          </a>
+          <a class="sidebar__item" href="/seller/messages">
+            <span>메시지</span>
+          </a>
+          <a class="sidebar__item" href="/seller/finance">
+            <span>정산 / 수익</span>
+          </a>
         </nav>
       </div>
 
@@ -56,12 +66,17 @@
             </thead>
             <tbody>
               <tr th:each="p : ${products}">
-                <td><img src="/images/example.png" class="product-thumb"></td>
+                <td><img th:src="@{${p.image_path}}" class="product-thumb"></td>
                 <td th:text="${p.product_name}"></td>
                 <td th:text="'₩ ' + ${#numbers.formatInteger(p.price, 3, 'COMMA')}"></td>
-                <td>1개</td>
+                <td th:text="${#numbers.formatInteger(p.count, 3, 'COMMA')} + '개'"></td>
                 <td><span class="badge badge--green">판매 중</span></td>
-                <td><button class="btn-sm">수정</button></td>
+                <td>
+                    <button class="btn-sm"
+                            th:onclick="|location.href='@{/seller/products/edit/{id}(id=${p.product_id})}'|">
+                        수정
+                    </button>
+                </td>
               </tr>
             </tbody>
           </table>

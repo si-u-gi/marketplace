@@ -8,7 +8,6 @@ import com.siugi.marketplace.domain.Products;
 import jakarta.persistence.EntityManager;
 
 public class JpaProductRepository implements ProductRepository {
-
     private final EntityManager em;
     
     public JpaProductRepository(EntityManager em) {

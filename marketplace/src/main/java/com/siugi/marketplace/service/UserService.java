@@ -43,4 +43,8 @@ public class UserService {
     public List<Users> findAllUser() {
         return userRepository.findAll();
     }
+
+    public void Order() { // 장바구니 시스템 만든 후 만들기, 장바구니 라는 도메인 먼저 만들기
+        
+    }
 }

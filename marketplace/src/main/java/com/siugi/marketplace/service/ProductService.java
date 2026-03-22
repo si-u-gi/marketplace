@@ -40,6 +40,7 @@ public class ProductService {
 
         p.setProduct_name(form.getProductName());
         p.setPrice(form.getPrice());
+        p.setCount(form.getCount());
         p.setShipping_fee(form.getShippingFee());
         p.setSeller_name(seller);
         p.setRating(0);

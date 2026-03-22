@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductForm {
     private String productName;
     private int price;
+    private int count;
     private int shippingFee;
     private MultipartFile imagePath; 
 
@@ -22,6 +23,14 @@ public class ProductForm {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getShippingFee() {

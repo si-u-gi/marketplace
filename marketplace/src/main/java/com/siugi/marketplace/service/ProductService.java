@@ -10,7 +10,7 @@ import com.siugi.marketplace.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 
-@Service
+@Transactional
 public class ProductService {
     private final ProductRepository productRepository;
     private final FileUploadService fileUploadService;

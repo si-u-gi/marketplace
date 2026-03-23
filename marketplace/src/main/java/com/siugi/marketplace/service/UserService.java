@@ -3,7 +3,7 @@ package com.siugi.marketplace.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.siugi.marketplace.controller.LoginForm;
+import com.siugi.marketplace.domain.LoginForm;
 import com.siugi.marketplace.domain.Users;
 import com.siugi.marketplace.repository.UserRepository;
 

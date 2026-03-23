@@ -1,6 +1,9 @@
 package com.siugi.marketplace.repository;
 
-import com.siugi.marketplace.domain.Cart;
+import java.util.List;
+import java.util.Optional;
+
+import com.siugi.marketplace.domain.Carts;
 
 import jakarta.persistence.EntityManager;
 
@@ -12,15 +15,24 @@ public class JpaCartRepository implements CartRepository {
     }
 
     @Override
-    public Cart save(Cart cart) {
+    public Carts save(Carts cart) {
         em.persist(cart);
         return cart;
     }
 
     @Override
-    public Cart findByUserId(Long user_id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByUserId'");
+    public Optional<Carts> findByUser_id(Long user_id) {
+        String jpql = "select c from Carts c Where c.user_id = :user_id";
+        List<Carts> result = em.createQuery(jpql, Carts.class)
+            .setParameter("user_id", user_id)
+            .getResultList();
+        
+        if (result.isEmpty()) {
+            return Optional.empty();
+        }
+        else {
+            return Optional.of(result.get(0));
+        }
     }
         
 }

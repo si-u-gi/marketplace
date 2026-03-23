@@ -3,10 +3,13 @@ package com.siugi.marketplace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.siugi.marketplace.repository.CartRepository;
+import com.siugi.marketplace.repository.JpaCartRepository;
 import com.siugi.marketplace.repository.JpaProductRepository;
 import com.siugi.marketplace.repository.JpaUserRepository;
 import com.siugi.marketplace.repository.ProductRepository;
 import com.siugi.marketplace.repository.UserRepository;
+import com.siugi.marketplace.service.CartService;
 import com.siugi.marketplace.service.FileUploadService;
 import com.siugi.marketplace.service.ProductService;
 import com.siugi.marketplace.service.UserService;
@@ -42,5 +45,15 @@ public class SpringConfig {
     @Bean
     public ProductRepository productRepository() {
         return new JpaProductRepository(em);
+    }
+
+    @Bean
+    public CartService cartService() {
+        return new CartService(cartRepository());
+    }
+
+    @Bean
+    public CartRepository cartRepository() {
+        return new JpaCartRepository(em);   
     }
 }

@@ -1,8 +1,13 @@
 package com.siugi.marketplace.repository;
 
-import com.siugi.marketplace.domain.Cart;
+import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
+import com.siugi.marketplace.domain.Carts;
+
+@Repository
 public interface CartRepository {
-    Cart save(Cart cart);
-    Cart findByUserId(Long user_id);
+    Carts save(Carts cart);
+    Optional<Carts> findByUser_id(Long user_id);
 }

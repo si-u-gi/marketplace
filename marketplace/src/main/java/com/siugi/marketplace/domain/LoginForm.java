@@ -1,4 +1,4 @@
-package com.siugi.marketplace.controller;
+package com.siugi.marketplace.domain;
 
 public class LoginForm {
     private String username;

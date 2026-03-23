@@ -3,6 +3,7 @@ package com.siugi.marketplace.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.siugi.marketplace.domain.LoginForm;
 import com.siugi.marketplace.service.UserService;
 
 import jakarta.servlet.http.HttpSession;

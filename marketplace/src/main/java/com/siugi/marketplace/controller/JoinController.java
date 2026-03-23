@@ -4,20 +4,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.siugi.marketplace.domain.Users;
+import com.siugi.marketplace.service.CartService;
+// import com.siugi.marketplace.service.CartService;
 import com.siugi.marketplace.service.UserService;
 
 @Controller
 public class JoinController {
     private final UserService userService;
+    private final CartService cartService;
 
-    public JoinController(UserService userService) {
+    public JoinController(UserService userService, CartService cartService) {
         this.userService = userService;
+        this.cartService = cartService;
     }
-    
+
     @PostMapping("/summit")
     public String createAccount(Users user) {
         try {
             userService.join(user);
+            cartService.join(user.getId());
         } catch (IllegalStateException e) {
             return "redirect:/join?error"; // 회원가입 실패 시 회원가입 페이지로 리다이렉트하여 error 파라미터 전달
         }

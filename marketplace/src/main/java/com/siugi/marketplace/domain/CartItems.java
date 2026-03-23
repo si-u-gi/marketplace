@@ -1,6 +1,13 @@
 package com.siugi.marketplace.domain;
 
-public class CartItem {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class CartItems {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long cart_id;
     private Long product_id;

@@ -1,7 +1,5 @@
 package com.siugi.marketplace.service;
 
-import org.springframework.stereotype.Service;
-
 import com.siugi.marketplace.domain.Carts;
 import com.siugi.marketplace.repository.CartRepository;
 

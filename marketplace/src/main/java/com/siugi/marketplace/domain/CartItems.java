@@ -34,10 +34,13 @@ public class CartItems {
         this.product_id = product_id;
     }
     
-    public int getcount() {
+    public int getCount() {
         return count;
     }
-    public void setcount(int count) {
+    public void setCount(int count) {
         this.count = count;
+    }
+    public void incrementCount() {
+        this.count++;
     }
 }

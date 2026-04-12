@@ -21,6 +21,12 @@ public class JpaCartRepository implements CartRepository {
     }
 
     @Override
+    public Optional<Carts> findById(Long id) {
+        Carts cart = em.find(Carts.class, id);
+        return Optional.ofNullable(cart);
+    }
+
+    @Override
     public Optional<Carts> findByUser_id(Long user_id) {
         String jpql = "select c from Carts c Where c.user_id = :user_id";
         List<Carts> result = em.createQuery(jpql, Carts.class)

@@ -62,7 +62,7 @@ public class SpringConfig {
 
     @Bean
     public CartItemService cartItemService() {
-        return new CartItemService(cartItemRepository(), cartRepository(), userRepository());
+        return new CartItemService(cartItemRepository(), cartRepository(), userRepository(), productRepository());
     }
 
     @Bean

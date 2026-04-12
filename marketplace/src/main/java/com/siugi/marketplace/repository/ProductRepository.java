@@ -10,6 +10,7 @@ import com.siugi.marketplace.domain.Products;
 @Repository
 public interface ProductRepository {
     Products save(Products product);
+    Optional<Products> findById(Long id);
     Optional<Products> findByProductName(String productName);
     List<Products> findBySellerName(String sellerName);
     List<Products> findAll();

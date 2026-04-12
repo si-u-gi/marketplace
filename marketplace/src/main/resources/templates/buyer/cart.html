@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>장바구니</title>
+
+  <style>
+    body {
+      font-family: system-ui;
+      background: #f5f5f7;
+      padding: 20px;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .cart-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cart-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      margin-bottom: 14px;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      object-fit: cover;
+    }
+
+    .cart-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cart-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .cart-meta {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .cart-price {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cart-quantity {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .qty-value {
+      width: 30px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .cart-total {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .btn-delete {
+      font-size: 12px;
+      color: #ef4444;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .summary {
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .summary-price {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .btn-order {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .empty {
+      text-align: center;
+      margin-top: 60px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+
+<body>
+<div class="cart-container">
+
+  <div class="cart-title">🛒 장바구니</div>
+
+  
+
+  <!-- 상품 리스트 -->
+  <div th:if="${#lists.isEmpty(cartItems)}" class="empty">
+    장바구니가 비어 있습니다.
+  </div>
+
+  <div th:each="item : ${cartItems}" class="cart-card">
+
+    <!-- 이미지 -->
+    <img class="cart-img" th:src="${item.product.image_path}" />
+
+    <!-- 정보 -->
+    <div class="cart-info">
+      <div class="cart-name" th:text="${item.product.product_name}"></div>
+
+      <div class="cart-meta">
+        <span th:text="${item.product.seller_name}"></span> ·
+        <span th:if="${item.product.shipping_fee == 0}">무료배송</span>
+        <span th:if="${item.product.shipping_fee > 0}"
+              th:text="'배송비 ₩ ' + ${item.product.shipping_fee}"></span>
+      </div>
+
+      <div class="cart-price"
+          th:text="'₩ ' + ${#numbers.formatInteger(item.product.price,3,'COMMA')}"></div>
+    </div>
+
+    <!-- 수량 -->
+    <div class="cart-quantity">
+      <form th:action="@{/cart/decrease}" method="post">
+        <input type="hidden" name="id" th:value="${item.id}">
+        <button type="submit" class="qty-btn">-</button>
+      </form>
+
+      <div class="qty-value" th:text="${item.count}"></div>
+
+      <form th:action="@{/cart/increase}" method="post">
+        <input type="hidden" name="id" th:value="${item.id}">
+        <button type="submit" class="qty-btn">+</button>
+      </form>
+    </div>
+
+    <!-- 합계 + 삭제 -->
+    <div class="cart-actions">
+      <div class="cart-total"
+          th:text="'₩ ' + ${#numbers.formatInteger(item.product.price * item.count,3,'COMMA')}"></div>
+
+      <form th:action="@{/cart/remove}" method="post">
+        <input type="hidden" name="id" th:value="${item.id}">
+        <button type="submit" class="btn-delete">삭제</button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- 총합 -->
+   
+  <div class="summary" th:if="${!#lists.isEmpty(cartItems)}">
+    <div>
+      총 결제 금액
+      <div class="summary-price"
+           th:text="'₩ ' + ${#numbers.formatInteger(totalPrice,3,'COMMA')}"></div>
+    </div>
+
+    <button class="btn-order">주문하기</button>
+  </div>
+
+</div>
+</body>
+</html>

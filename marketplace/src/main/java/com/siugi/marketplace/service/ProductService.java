@@ -2,8 +2,6 @@ package com.siugi.marketplace.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.siugi.marketplace.domain.ProductForm;
 import com.siugi.marketplace.domain.Products;
 import com.siugi.marketplace.repository.ProductRepository;

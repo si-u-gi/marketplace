@@ -484,7 +484,9 @@
       <div class="navbar__link">주문내역</div>
 
       <div class="navbar__badge">
-        <button class="navbar__icon-btn">🛒</button>
+        <a href="/cart">
+          <button class="navbar__icon-btn">🛒</button>
+        </a>
         <span th:text="${cartItemCount}">0</span>
       </div>
 

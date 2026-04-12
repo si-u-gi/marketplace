@@ -1,37 +1,32 @@
 package com.siugi.marketplace.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CartItems {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long cart_id;
-    private Long product_id;
     private int count;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Products product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+    private Carts cart;
 
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCart_id() {
-        return cart_id;
-    }
-    public void setCart_id(Long cart_id) {
-        this.cart_id = cart_id;
-    }
-
-    public Long getProduct_id() {
-        return product_id;
-    }
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
     }
     
     public int getCount() {
@@ -42,5 +37,22 @@ public class CartItems {
     }
     public void incrementCount() {
         this.count++;
+    }
+    public void decrementCount() {
+        this.count--;
+    }
+
+    public Products getProduct() {
+        return product;
+    }
+    public void setProduct(Products product) {
+        this.product = product;
+    }
+
+    public Carts getCart() {
+        return cart;
+    }
+    public void setCart(Carts cart) {
+        this.cart = cart;
     }
 }

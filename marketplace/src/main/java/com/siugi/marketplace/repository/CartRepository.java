@@ -9,5 +9,6 @@ import com.siugi.marketplace.domain.Carts;
 @Repository
 public interface CartRepository {
     Carts save(Carts cart);
+    Optional<Carts> findById(Long id);
     Optional<Carts> findByUser_id(Long user_id);
 }

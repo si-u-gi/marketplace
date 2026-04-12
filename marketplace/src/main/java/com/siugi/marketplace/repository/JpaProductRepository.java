@@ -21,6 +21,12 @@ public class JpaProductRepository implements ProductRepository {
     }
 
     @Override
+    public Optional<Products> findById(Long id) {
+        Products product = em.find(Products.class, id);
+        return Optional.ofNullable(product);
+    }
+
+    @Override
     public Optional<Products> findByProductName(String productName) {
         String jpql = "select p from Products p where p.productName = :productName";
         List<Products> result = em.createQuery(jpql, Products.class)

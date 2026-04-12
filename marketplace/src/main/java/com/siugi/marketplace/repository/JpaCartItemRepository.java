@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.siugi.marketplace.domain.CartItems;
+import com.siugi.marketplace.domain.Carts;
+import com.siugi.marketplace.domain.Products;
+
 import jakarta.persistence.EntityManager;
 
 public class JpaCartItemRepository implements CartItemRepository {
@@ -20,19 +23,30 @@ public class JpaCartItemRepository implements CartItemRepository {
     }
 
     @Override
-    public List<CartItems> findByCart_id(Long cart_id) {
-        String jpql = "select ci from CartItems ci where ci.cart_id = :cart_id";
-        return em.createQuery(jpql, CartItems.class)
-            .setParameter("cart_id", cart_id)
-            .getResultList();
+    public void delete(CartItems cartItem) {
+        em.remove(cartItem);
     }
 
     @Override
-    public Optional<CartItems> findByCart_idAndProduct_id(Long cart_id, Long product_id) {
-        String jpql = "select ci from CartItems ci where ci.cart_id = :cart_id and ci.product_id = :product_id";
+    public Optional<CartItems> findById(Long id) {
+        CartItems cartItem = em.find(CartItems.class, id);
+        return Optional.ofNullable(cartItem);
+    }
+
+    @Override
+    public List<CartItems> findByCart(Carts cart) {
+        String jpql = "select ci from CartItems ci where ci.cart = :cart";
         return em.createQuery(jpql, CartItems.class)
-            .setParameter("cart_id", cart_id)
-            .setParameter("product_id", product_id)
+                .setParameter("cart", cart)
+                .getResultList();
+    }
+
+    @Override
+    public Optional<CartItems> findByCartAndProduct(Carts cart, Products product) {
+        String jpql = "select ci from CartItems ci where ci.cart = :cart and ci.product = :product";
+        return em.createQuery(jpql, CartItems.class)
+            .setParameter("cart", cart)
+            .setParameter("product", product)
             .getResultList()
             .stream()
             .findFirst();
